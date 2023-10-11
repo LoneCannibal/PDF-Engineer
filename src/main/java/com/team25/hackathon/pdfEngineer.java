@@ -1,6 +1,7 @@
 package com.team25.hackathon;
 
 import java.io.BufferedInputStream;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,29 +10,42 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.lucene.search.spell.PlainTextDictionary;
+import org.apache.lucene.search.spell.SpellChecker;
+import org.apache.lucene.store.Directory;
+import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.encryption.AccessPermission;
+import org.apache.pdfbox.pdmodel.encryption.StandardProtectionPolicy;
 import org.apache.pdfbox.preflight.Format;
 import org.apache.pdfbox.preflight.PreflightDocument;
 import org.apache.pdfbox.preflight.ValidationResult;
+import org.apache.pdfbox.preflight.ValidationResult.ValidationError;
 import org.apache.pdfbox.preflight.exception.ValidationException;
 import org.apache.pdfbox.preflight.parser.PreflightParser;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.bitbucket.cowwoc.diffmatchpatch.DiffMatchPatch;
 
 import com.spire.pdf.conversion.PdfStandardsConverter;
 
-public class pdfEngineer {
+public class PdfEngineer {
 
 	private PDDocument pdfDoc1;
 	private File pdfFile;
+	private File TEMP_DOWNLOAD_FILE = new File(
+			"C:\\\\Users\\\\aakas\\\\Documents\\\\DA_Hackathon\\\\hackathon\\\\temp\\\\temporary.pdf");
 
 	// Default constructor
-	public pdfEngineer() {
+	public PdfEngineer() {
 
 	}
 
 	// Parameterized constructor for single PDF file
-	public pdfEngineer(File pdfFile) {
+	public PdfEngineer(File pdfFile) {
 
 		this.pdfFile = pdfFile;
 		try {
@@ -44,12 +58,14 @@ public class pdfEngineer {
 	}
 
 	// Parameterized constructor to load PDF from give URL
-	public pdfEngineer(URL pdfURL) {
+	// The Download PDF is stored in the temp directory
+	public PdfEngineer(URL pdfURL) {
 
 		try {
-			InputStream is = pdfURL.openStream();
-			byte[] temp = is.readAllBytes();
-			pdfDoc1 = PDDocument.load(temp);
+			FileUtils.copyURLToFile(pdfURL, TEMP_DOWNLOAD_FILE, 10000, 1000000);
+			pdfFile = TEMP_DOWNLOAD_FILE;
+			pdfDoc1 = PDDocument.load(TEMP_DOWNLOAD_FILE);
+
 		} catch (Exception e) {
 			System.out.println("ERROR: File could not be loaded from URL " + e);
 			System.out.println("Please recheck the given URL: " + pdfURL);
@@ -72,37 +88,92 @@ public class pdfEngineer {
 
 	// Compare PDF files with each other based only on text
 	// Both files need to have same text to be equal
-	public boolean simpleCompare(pdfEngineer pdf2) {
+	public boolean simpleCompare(PdfEngineer pdf2) {
 		if (extractText().equals(pdf2.extractText()))
 			return true;
 		return false;
 
 	}
 
-	// Validate PDF according to provided format
-	public void validatePDF(Format documentFormat) throws Exception {
+	// Validate PDF according to provided format and return the validation errors
+	public List<ValidationError> validatePDF(Format documentFormat) throws Exception {
 		ValidationResult result = null;
 		PreflightParser parser = new PreflightParser(pdfFile);
+
 		parser.parse(documentFormat);
 		PreflightDocument documentTemp = parser.getPreflightDocument();
 		documentTemp.validate();
 		documentTemp.close();
 		result = documentTemp.getResult();
-		
-		if(result.getErrorsList().size() > 0) {
-			for(ValidationResult.ValidationError ve: result.getErrorsList()) {
-				System.out.println(ve.getErrorCode()+": "+ve.getDetails()+": "+ve.getPageNumber());
-				//System.out.println(ve.toString());
-			}
-		}
-		System.out.println(result.toString());
+
+		return result.getErrorsList();
 
 	}
-	
-	//Convert PDF to given Format
+
+	// Convert PDF to given Format
 	public void convertToFormat(Format documentFormat, String outputFile) throws Exception {
-		FileInputStream isr = new FileInputStream(pdfFile);
+		InputStream isr = new DataInputStream(new FileInputStream(pdfFile));
 		PdfStandardsConverter converter = new PdfStandardsConverter(isr);
-		converter.toPdfA1A(outputFile);
+		switch (documentFormat) {
+		case PDF_A1A:
+			converter.toPdfA1A(outputFile);
+			break;
+		case PDF_A1B:
+			converter.toPdfA1B(outputFile);
+			break;
+		default:
+			converter.toPdfA1B(outputFile);
+		}
+	}
+
+	// Search for word of phrase returns true if found
+	public boolean findInPdf(String phrase) {
+		if (this.extractText().contains(phrase)) {
+			return true;
+		}
+		return false;
+	}
+
+	// Encrypt PDF with a given password with a given filename
+	public void encryptPdf(String password, File fileName) {
+		AccessPermission accessPermission = new AccessPermission();
+		StandardProtectionPolicy spp = new StandardProtectionPolicy(password, password, accessPermission);
+		spp.setEncryptionKeyLength(128);
+		spp.setPermissions(accessPermission);
+		try {
+			pdfDoc1.protect(spp);
+			pdfDoc1.save(fileName);
+			pdfDoc1.close();
+		} catch (Exception e) {
+			System.out.println("ERROR: File could not be encrypted " + e);
+		}
+	}
+
+	// Merge PDF. Provide two PdfEngineer objects and merge them into single output
+	// PDF file
+	public void mergePdf(PdfEngineer pdf1, PdfEngineer pdf2, File output) {
+		PDFMergerUtility PDFmerger = new PDFMergerUtility();
+		try {
+			PDFmerger.setDestinationFileName(output.toString());
+			PDFmerger.addSource(pdf1.getFile());
+			PDFmerger.addSource(pdf2.getFile());
+
+			PDFmerger.mergeDocuments(null);
+		} catch (Exception e) {
+			System.out.println("ERROR: Files could not be merged");
+		}
+	}
+
+	//TODO Enter text
+
+	// TODO Enter text
+	// TODO Extract and compare images???
+
+	public PDDocument getPdfDoc() {
+		return this.pdfDoc1;
+	}
+
+	public File getFile() {
+		return this.pdfFile;
 	}
 }
