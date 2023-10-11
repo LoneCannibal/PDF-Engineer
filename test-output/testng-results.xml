@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[Do files have same content? true]]>
+    </line>
+    <line>
+      <![CDATA[PDF was converted to A1A format]]>
+    </line>
+    <line>
+      <![CDATA[PDF successfully encrypted]]>
+    </line>
+    <line>
+      <![CDATA[PDF files merged into single file: C:\Users\aakas\Downloads\pdfengineer\hackathon\output\merged.pdf]]>
+    </line>
+    <line>
+      <![CDATA[PDF loaded from path]]>
+    </line>
+    <line>
+      <![CDATA[PDF loaded from given URL]]>
+    </line>
+    <line>
+      <![CDATA[PDF text extracted]]>
+    </line>
+    <line>
+      <![CDATA[Phrase: this mistaken idea of denouncing pleasure and praising pain is found? true]]>
+    </line>
+    <line>
+      <![CDATA[PDF validation errors are successfully displayed]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2023-10-11T20:12:28 IST" name="Default suite" finished-at="2023-10-11T20:12:32 IST" duration-ms="4142">
+    <groups>
+    </groups>
+    <test started-at="2023-10-11T20:12:28 IST" name="Default test" finished-at="2023-10-11T20:12:32 IST" duration-ms="4142">
+      <class name="com.team25.hackathon.PdfEngineerTestCases">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:28 IST" name="setup" finished-at="2023-10-11T20:12:28 IST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:28 IST" name="initialization" finished-at="2023-10-11T20:12:28 IST" duration-ms="49" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="comparison()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:28 IST" name="comparison" finished-at="2023-10-11T20:12:29 IST" duration-ms="213" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Do files have same content? true]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- comparison -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:29 IST" name="initialization" finished-at="2023-10-11T20:12:29 IST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="convert()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:29 IST" name="convert" finished-at="2023-10-11T20:12:31 IST" duration-ms="2386" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[PDF was converted to A1A format]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- convert -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:31 IST" name="initialization" finished-at="2023-10-11T20:12:31 IST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="encryptWithPassword()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:31 IST" name="encryptWithPassword" finished-at="2023-10-11T20:12:31 IST" duration-ms="5" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[PDF successfully encrypted]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- encryptWithPassword -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:31 IST" name="initialization" finished-at="2023-10-11T20:12:31 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="mergeFiles()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:31 IST" name="mergeFiles" finished-at="2023-10-11T20:12:31 IST" duration-ms="31" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[PDF files merged into single file: C:\Users\aakas\Downloads\pdfengineer\hackathon\output\merged.pdf]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- mergeFiles -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:31 IST" name="initialization" finished-at="2023-10-11T20:12:31 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="openFile()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:31 IST" name="openFile" finished-at="2023-10-11T20:12:31 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[PDF loaded from path]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- openFile -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:31 IST" name="initialization" finished-at="2023-10-11T20:12:31 IST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="openURL()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:31 IST" name="openURL" finished-at="2023-10-11T20:12:32 IST" duration-ms="1272" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[PDF loaded from given URL]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- openURL -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:32 IST" name="initialization" finished-at="2023-10-11T20:12:32 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="readText()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:32 IST" name="readText" finished-at="2023-10-11T20:12:32 IST" duration-ms="23" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[PDF text extracted]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- readText -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:32 IST" name="initialization" finished-at="2023-10-11T20:12:32 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="search()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:32 IST" name="search" finished-at="2023-10-11T20:12:32 IST" duration-ms="28" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Phrase: this mistaken idea of denouncing pleasure and praising pain is found? true]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- search -->
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:32 IST" name="initialization" finished-at="2023-10-11T20:12:32 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="validation()[pri:0, instance:com.team25.hackathon.PdfEngineerTestCases@3c46e67a]" started-at="2023-10-11T20:12:32 IST" name="validation" finished-at="2023-10-11T20:12:32 IST" duration-ms="77" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[PDF validation errors are successfully displayed]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validation -->
+      </class> <!-- com.team25.hackathon.PdfEngineerTestCases -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
